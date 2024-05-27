@@ -181,21 +181,27 @@ a.more-link {
 ---------------------------------------------------------------------------- */
 body.front-end header.site-header {
 	position: sticky;
-	top: var(--admin-bar-height);
+	top: 0;
 	z-index: 100;
+}
+
+@media ( min-width: 600.1px ) {
+	body.front-end header.site-header {
+		top: var(--admin-bar-height);
+	}
 }
 
 /* Mobile menu button styles
 ---------------------------------------------------------------------------- */
 html button.rs-mobile-menu-button {
 	aspect-ratio: 1;
-	display: flex;
-	flex-direction: column;
-	place-content: center;
 }
 
-html button.rs-mobile-menu-button span {
-	display: contents;
+@media ( min-width: 782px ) {
+	.rs-mobile-menu-button svg {
+		width: 30px;
+		height: 30px;
+	}
 }
 
 /* Mobile menu styles
@@ -243,26 +249,208 @@ body.front-end .rs-mobile-menu--inner {
 	}
 }
 
+@media ( max-width: 782px ) {
+	body.front-end .rs-mobile-menu--container nav.has-small-font-size {
+		color: #fffa;
+	}
+}
+
 /* Sidebar
 ---------------------------------------------------------------------------- */
+/*
+.main-columns
+.content-column
+.sidebar-column
+*/
+
 @media ( min-width: 782px ) {
+	.main-columns {
+		gap: var(--wp--preset--spacing--x-large) !important;
+	}
+
 	.sidebar-column {
+		max-width: 300px;
+		box-sizing: content-box;
+
 		border-left: 1px solid #0002;
-		padding-left: var(--wp--preset--spacing--medium);
+		padding-left: var(--wp--preset--spacing--x-large);
 		border-radius: 0;
 	}
 }
 
 @media ( max-width: 781.9px ) {
 	.sidebar-column {
-		margin-left: calc( -1 * var(--wp--style--root--padding-right) ) !important;
-		margin-right: calc( -1 * var(--wp--style--root--padding-right) ) !important;
-		margin-bottom: calc( -1 * var(--wp--preset--spacing--xx-large) ) !important;
+		/*margin-left: calc( -1 * var(--wp--style--root--padding-right) ) !important;*/
+		/*margin-right: calc( -1 * var(--wp--style--root--padding-right) ) !important;*/
+		margin-left: auto !important;
+		margin-right: auto !important;
 
 		padding-top: var(--wp--preset--spacing--x-large);
 		padding-bottom: var(--wp--preset--spacing--x-large);
 	}
+
+	.sidebar-stack {
+		gap: var(--wp--preset--spacing--x-large) !important;
+	}
+
+	.sidebar-recommended-posts {
+		padding-left: var(--wp--preset--spacing--large);
+		padding-right: var(--wp--preset--spacing--large);
+	}
+
+	.sidebar-recommended-posts .wp-block-columns {
+		display: grid;
+		grid-template-columns: 3fr 1fr;
+		gap: var(--wp--preset--spacing--large);
+	}
 }
+
+/* Single posts and pages
+---------------------------------------------------------------------------- */
+body.single main .display-field--featured_image img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+.cn_post_date {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+@media ( min-width: 782.1px ) {
+	body.single main .display-field--featured_image img {
+		border-radius: 10px 10px 0 0;
+	}
+}
+
+@media ( max-width: 782px ) {
+	body.single main {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	body.single main .entry-content > .wp-block-image {
+		margin-left: calc( (-1 * var(--wp--preset--spacing--medium)) - 0.5px ) !important;
+		margin-right: calc( -1 * var(--wp--preset--spacing--medium) ) !important;
+	}
+}
+
+/* Featured Video with aspect ratio option
+---------------------------------------------------------------------------- */
+body .is-layout-flex > .display-field--featured_image {
+	width: 100%;
+}
+
+.cn-featured-video-embed {
+	width: 100%;
+}
+
+.cn-featured-video-embed.has-aspect-ratio {
+	height: 100%;
+}
+
+.cn-featured-video-embed iframe {
+	display: block;
+	width: 100%;
+}
+
+.cn-featured-video-embed.has-aspect-ratio iframe {
+	height: 100%;
+}
+
+/* Front Page
+---------------------------------------------------------------------------- */
+.category-section-heading .wp-block-heading a:not(:hover, :focus-visible) {
+	text-decoration: none;
+}
+
+/* Read more buttons
+---------------------------------------------------------------------------- */
+p.cn-read-more {
+	width: fit-content;
+	text-transform: uppercase;
+	font-size: 15px;
+	font-weight: 700;
+}
+
+p.cn-read-more > a {
+	text-decoration: none;
+}
+
+p.cn-read-more > a::after {
+	position: relative;
+	margin-left: 0.5ch;
+	top: 2px;
+	left: 0;
+	content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' viewBox='0 0 16 16'%3E%3Cpath fill='%23DA380A' d='M0 8a8.001 8.001 0 0016 0A8.001 8.001 0 000 8zm3.636-.727h5.819L7.273 5.09l1.454-1.438L13.091 8l-4.364 4.364-1.454-1.455 2.182-2.182H3.636V7.273z' fill-rule='nonzero'%3E%3C/path%3E%3C/svg%3E");
+	transition: margin-left 0.15s linear;
+}
+
+p.cn-read-more:has(a:hover, a:focus-visible) > a::after {
+	margin-left: 1ch;
+}
+
+/* Social links
+---------------------------------------------------------------------------- */
+.wp-block-social-links {
+	display: grid !important;
+	grid-template-columns: 1fr;
+	gap: 3px !important;
+}
+
+.wp-block-social-links > li {
+	background: none !important;
+}
+
+.wp-block-social-links > li a {
+	padding: 0 !important;
+}
+
+.wp-block-social-links > li a img {
+	width: 100%;
+	height: auto;
+	max-width: 60px;
+}
+
+.wp-block-social-links:has(>li:nth-child(2)) {
+	grid-template-columns: repeat(2, 1fr);
+}
+.wp-block-social-links:has(>li:nth-child(3)) {
+	grid-template-columns: repeat(3, 1fr);
+}
+.wp-block-social-links:has(>li:nth-child(4)) {
+	grid-template-columns: repeat(4, 1fr);
+}
+.wp-block-social-links:has(>li:nth-child(5)) {
+	grid-template-columns: repeat(5, 1fr);
+}
+.wp-block-social-links:has(>li:nth-child(6)) {
+	grid-template-columns: repeat(6, 1fr);
+}
+.wp-block-social-links:has(>li:nth-child(7)) {
+	grid-template-columns: repeat(7, 1fr);
+}
+
+@media ( max-width: 560px ) {
+	.wp-block-social-links {
+		gap: 8px !important;
+	}
+
+	.wp-block-social-links:has(>li:nth-child(5)) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+/* Footer
+---------------------------------------------------------------------------- */
+footer .wp-block-navigation a.wp-block-navigation-item__content:where(:hover, :focus-visible) {
+	color: #fff !important;
+}
+
+/* Unused
+---------------------------------------------------------------------------- */
 
 /* Unused
 ---------------------------------------------------------------------------- */

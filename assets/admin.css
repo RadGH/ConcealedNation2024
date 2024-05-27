@@ -1,0 +1,46 @@
+.acf-field-6654b3cbfccc8 .acf-button-group {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.acf-field-6654b3cbfccc8 .acf-button-group label {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.acf-field-6654b3cbfccc8 .acf-button-group label::after {
+	content: '';
+	display: block;
+	margin-top: 3px;
+	height: auto;
+	background: #a2a2a2;
+	border: 2px dashed #d1d1d1;
+
+	--landscape-width: 30px;
+	--portrait-width: 16px;
+	width: var( --landscape-width );
+}
+
+.acf-field-6654b3cbfccc8 .acf-button-group label:has(input[value="1.777"])::after {
+	aspect-ratio: 1.77;
+}
+.acf-field-6654b3cbfccc8 .acf-button-group label:has(input[value="1.600"])::after {
+	aspect-ratio: 1.6;
+}
+.acf-field-6654b3cbfccc8 .acf-button-group label:has(input[value="1.333"])::after {
+	aspect-ratio: 1.333;
+}
+.acf-field-6654b3cbfccc8 .acf-button-group label:has(input[value="0.5625"])::after {
+	width: var( --portrait-width );
+	aspect-ratio: 0.5625;
+}
+.acf-field-6654b3cbfccc8 .acf-button-group label:has(input[value="0.625"])::after {
+	width: var( --portrait-width );
+	aspect-ratio: 0.625;
+}
+.acf-field-6654b3cbfccc8 .acf-button-group label:has(input[value="0.75"])::after {
+	width: var( --portrait-width );
+	aspect-ratio: 0.75;
+}
